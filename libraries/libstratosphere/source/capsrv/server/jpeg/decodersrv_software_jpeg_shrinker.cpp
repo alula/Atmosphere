@@ -14,6 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include <stratosphere.hpp>
+#if defined(ATMOSPHERE_BOARD_NINTENDO_NX)
 #include "decodersrv_software_jpeg_shrinker.hpp"
 #include "capsrv_server_jpeg_library_types.hpp"
 #include "capsrv_server_jpeg_error_handler.hpp"
@@ -234,3 +235,4 @@ namespace ams::capsrv::server::jpeg {
     }
 
 }
+#endif
