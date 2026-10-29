@@ -940,6 +940,10 @@ namespace ams::kern {
                             break;
                         case ams::svc::DebugException_DebuggerBreak:
                             {
+                                #if defined(ATMOSPHERE_BOARD_NINTENDO_OUNCE)
+                                /* TODO: Implement eventually */
+                                MESOSPHERE_UNIMPLEMENTED();
+                                #else
                                 /* TODO: How does this work with non-4 cpu count? */
                                 static_assert(cpu::NumCores <= 4);
 
@@ -948,6 +952,7 @@ namespace ams::kern {
                                 out->info.exception.specific.debugger_break.active_thread_ids[1] = info->info.exception.exception_data[1];
                                 out->info.exception.specific.debugger_break.active_thread_ids[2] = info->info.exception.exception_data[2];
                                 out->info.exception.specific.debugger_break.active_thread_ids[3] = info->info.exception.exception_data[3];
+                                #endif
                             }
                             break;
                         case ams::svc::DebugException_UndefinedSystemCall:

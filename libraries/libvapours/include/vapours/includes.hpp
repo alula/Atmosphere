@@ -55,7 +55,7 @@
 #include <unordered_map>
 #include <set>
 
-#if defined(ATMOSPHERE_OS_HORIZON) && defined(ATMOSPHERE_BOARD_NINTENDO_NX)
+#if defined(ATMOSPHERE_OS_HORIZON) && (defined(ATMOSPHERE_BOARD_NINTENDO_NX) || defined(ATMOSPHERE_BOARD_NINTENDO_OUNCE))
 
 /* Libnx. */
 #include <switch.h>

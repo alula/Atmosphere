@@ -14,7 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#if defined(ATMOSPHERE_BOARD_NINTENDO_NX)
+#if defined(ATMOSPHERE_BOARD_NINTENDO_NX) || defined(ATMOSPHERE_BOARD_NINTENDO_OUNCE)
 
     namespace ams::svc {
 

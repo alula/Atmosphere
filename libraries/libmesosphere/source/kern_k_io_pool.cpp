@@ -19,8 +19,10 @@ namespace ams::kern {
 
     namespace {
 
+        constexpr size_t PoolTypeCount = static_cast<size_t>(ams::svc::IoPoolType_Count) == 0 ? 1 : static_cast<size_t>(ams::svc::IoPoolType_Count);
+
         constinit KLightLock g_io_pool_lock;
-        constinit bool g_pool_used[ams::svc::IoPoolType_Count];
+        constinit bool g_pool_used[PoolTypeCount];
 
         struct IoRegionExtents {
             KPhysicalAddress address;

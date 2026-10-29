@@ -24,6 +24,13 @@
         using namespace ams::svc::board::nintendo::nx;
     }
 
+#elif defined(ATMOSPHERE_BOARD_NINTENDO_OUNCE)
+
+    #include <vapours/svc/board/nintendo/ounce/svc_hardware_constants.hpp>
+    namespace ams::svc {
+        using namespace ams::svc::board::nintendo::ounce;
+    }
+
 #elif defined(ATMOSPHERE_BOARD_QEMU_VIRT)
 
     #include <vapours/svc/board/qemu/virt/svc_hardware_constants.hpp>

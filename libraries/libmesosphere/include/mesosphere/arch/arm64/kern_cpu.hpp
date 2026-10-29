@@ -30,6 +30,8 @@ namespace ams::kern::arch::arm64::cpu {
 
 #if defined(ATMOSPHERE_BOARD_NINTENDO_NX)
     constexpr inline size_t NumCores = 4;
+#elif defined(ATMOSPHERE_BOARD_NINTENDO_OUNCE)
+    constexpr inline size_t NumCores = 8;
 #elif defined(ATMOSPHERE_BOARD_QEMU_VIRT)
     constexpr inline size_t NumCores = 4;
 #else

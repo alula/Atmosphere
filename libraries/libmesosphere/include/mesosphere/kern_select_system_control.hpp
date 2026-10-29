@@ -24,6 +24,13 @@
         using ams::kern::board::nintendo::nx::KSystemControl;
     }
 
+#elif defined(ATMOSPHERE_BOARD_NINTENDO_OUNCE)
+    #include <mesosphere/board/nintendo/ounce/kern_k_system_control.hpp>
+
+    namespace ams::kern {
+        using ams::kern::board::nintendo::ounce::KSystemControl;
+    }
+
 #elif defined(ATMOSPHERE_BOARD_QEMU_VIRT)
     #include <mesosphere/board/qemu/virt/kern_k_system_control.hpp>
 

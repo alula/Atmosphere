@@ -39,6 +39,16 @@
 
     }
 
+#elif defined(ATMOSPHERE_BOARD_NINTENDO_OUNCE)
+
+    #include <mesosphere/board/nintendo/ounce/kern_cpu_map.hpp>
+
+    namespace ams::kern::cpu {
+
+        using namespace ams::kern::board::nintendo::ounce::impl::cpu;
+
+    }
+
 #elif defined(ATMOSPHERE_BOARD_QEMU_VIRT)
 
     #include <mesosphere/board/qemu/virt/kern_cpu_map.hpp>
