@@ -39,7 +39,8 @@ $(eval $(call ATMOSPHERE_ADD_TARGET, $(strip $1)_audit, audit, $(strip $2), $(st
 
 endef
 
-$(eval $(call ATMOSPHERE_ADD_TARGETS, nx, nx-hac-001, arm-cortex-a57,))
+$(eval $(call ATMOSPHERE_ADD_TARGETS, nx,    nx-hac-001,    arm-cortex-a57,))
+$(eval $(call ATMOSPHERE_ADD_TARGETS, ounce, ounce-bee-001, arm-cortex-a78c,))
 
 clean-all: $(foreach config,$(ATMOSPHERE_BUILD_CONFIGS),clean-$(config))
 

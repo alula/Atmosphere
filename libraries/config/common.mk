@@ -86,6 +86,26 @@ endif
 
 export ATMOSPHERE_LIBDIRS :=
 
+else ifeq ($(ATMOSPHERE_BOARD),ounce-bee-001)
+
+ifeq ($(ATMOSPHERE_CPU),arm-cortex-a78c)
+export ATMOSPHERE_ARCH_DIR   := arm64
+export ATMOSPHERE_BOARD_DIR  := nintendo/ounce
+export ATMOSPHERE_OS_DIR     := horizon
+
+export ATMOSPHERE_ARCH_NAME  := arm64
+export ATMOSPHERE_BOARD_NAME := nintendo_ounce
+export ATMOSPHERE_OS_NAME    := horizon
+
+export ATMOSPHERE_SUB_ARCH_DIR  := armv8a
+export ATMOSPHERE_SUB_ARCH_NAME := armv8a
+
+export ATMOSPHERE_CPU_EXTENSIONS := arm_crypto_extension aarch64_crypto_extension aarch64_pauth_extension
+
+endif
+
+export ATMOSPHERE_LIBDIRS :=
+
 else ifeq ($(ATMOSPHERE_BOARD),qemu-virt)
 
 
@@ -156,6 +176,11 @@ endif
 ifeq ($(ATMOSPHERE_CPU),arm-cortex-a57)
 export ATMOSPHERE_CPU_DIR    := cortex_a57
 export ATMOSPHERE_CPU_NAME   := arm_cortex_a57
+endif
+
+ifeq ($(ATMOSPHERE_CPU),arm-cortex-a78c)
+export ATMOSPHERE_CPU_DIR    := cortex_a78c
+export ATMOSPHERE_CPU_NAME   := arm_cortex_a78c
 endif
 
 ifeq ($(ATMOSPHERE_CPU),arm7tdmi)
