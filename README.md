@@ -6,6 +6,11 @@
 [![Chat on Discord](https://img.shields.io/badge/Discord-5865f2?logo=discord&logoColor=white)](https://discordapp.com/invite/ZdqEhed)
 ![Made with Notepad++](img/np++.png?raw=true)
 
+> [!WARNING]  
+> **This is not a "full" Nintendo Switch 2 CFW and very likely will never be.**
+> 
+> This branch aims to make parts of Atmosphere buildable on the Ounce target: port certain replacements for stock modules and port Atmosphere-libs for any eventual homebrew development.
+
 Atmosphère is a work-in-progress customized firmware for the Nintendo Switch.
 
 Components
