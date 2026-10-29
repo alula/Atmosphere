@@ -15,6 +15,8 @@ ATMOSPHERE_SUPPORTED_HOS_MICRO_VERSION := $(shell grep 'define ATMOSPHERE_SUPPOR
 
 ATMOSPHERE_VERSION := $(ATMOSPHERE_MAJOR_VERSION).$(ATMOSPHERE_MINOR_VERSION).$(ATMOSPHERE_MICRO_VERSION)-$(ATMOSPHERE_GIT_REVISION)
 
+ifeq ($(ATMOSPHERE_BOARD),nx-hac-001)
+
 dist: dist-no-debug
 	$(eval DIST_DIR = $(CURRENT_DIRECTORY)/$(ATMOSPHERE_OUT_DIR)/atmosphere-$(ATMOSPHERE_VERSION)-debug)
 	rm -rf $(DIST_DIR)
@@ -120,6 +122,18 @@ package3: emummc fusee stratosphere mesosphere exosphere troposphere
 	$(SILENTCMD)$(PYTHON) fusee/build_package3.py $(CURRENT_DIRECTORY) $(ATMOSPHERE_OUT_DIR) $(ATMOSPHERE_BOOT_OUT_DIR) $(ATMOSPHERE_GIT_HASH) $(ATMOSPHERE_MAJOR_VERSION) $(ATMOSPHERE_MINOR_VERSION) $(ATMOSPHERE_MICRO_VERSION) 0 $(ATMOSPHERE_SUPPORTED_HOS_MAJOR_VERSION) $(ATMOSPHERE_SUPPORTED_HOS_MINOR_VERSION) $(ATMOSPHERE_SUPPORTED_HOS_MICRO_VERSION) 0
 	@echo "Built package3!"
 
+stratosphere: fusee
+
+else ifeq ($(ATMOSPHERE_BOARD),ounce-bee-001)
+
+dist: dist-no-debug
+
+dist-no-debug: stratosphere
+
+else
+$(error Unsupported board: $(ATMOSPHERE_BOARD))
+endif
+
 emummc:
 	$(MAKE) -C $(CURRENT_DIRECTORY)/emummc all
 
@@ -129,7 +143,7 @@ fusee: libexosphere_boot
 exosphere: libexosphere libexosphere_boot
 	@$(MAKE) --no-print-directory -C $(CURRENT_DIRECTORY)/exosphere -f $(CURRENT_DIRECTORY)/exosphere/exosphere.mk ATMOSPHERE_CHECKED_LIBEXOSPHERE=1 ATMOSPHERE_CHECKED_BOOT_LIBEXOSPHERE=1
 
-stratosphere: fusee libstratosphere
+stratosphere: libstratosphere
 	@$(MAKE) --no-print-directory -C $(CURRENT_DIRECTORY)/stratosphere -f $(CURRENT_DIRECTORY)/stratosphere/stratosphere.mk ATMOSPHERE_CHECKED_LIBSTRATOSPHERE=1 ATMOSPHERE_CHECKED_FUSEE=1
 
 mesosphere: libmesosphere

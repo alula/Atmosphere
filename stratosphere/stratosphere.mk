@@ -5,7 +5,19 @@ THIS_MAKEFILE     := $(abspath $(lastword $(MAKEFILE_LIST)))
 CURRENT_DIRECTORY := $(abspath $(dir $(THIS_MAKEFILE)))
 include $(CURRENT_DIRECTORY)/../libraries/config/common.mk
 
+ifeq ($(ATMOSPHERE_BOARD),nx-hac-001)
+
 ALL_MODULES := loader boot ncm pm sm ams_mitm spl eclct.stub ro creport fatal dmnt boot2 erpt pgl jpegdec LogManager cs htc TioServer dmnt.gen2 memlet
+
+else ifeq ($(ATMOSPHERE_BOARD),ounce-bee-001)
+
+ALL_MODULES := ro erpt
+
+else
+
+$(error Unsupported board for stratosphere: $(ATMOSPHERE_BOARD))
+
+endif
 
 all: $(ALL_MODULES)
 

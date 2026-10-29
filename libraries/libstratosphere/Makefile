@@ -35,6 +35,7 @@ $(eval $(call ATMOSPHERE_ADD_TARGET, $(strip $1)_audit, $(strip $2)audit, $(stri
 endef
 
 $(eval $(call ATMOSPHERE_ADD_TARGETS, nx,                      , nx-hac-001, arm-cortex-a57,,))
+$(eval $(call ATMOSPHERE_ADD_TARGETS, ounce,                   , ounce-bee-001, arm-cortex-a78c,,))
 
 $(eval $(call ATMOSPHERE_ADD_TARGETS, win_x64,                 , generic_windows, generic_x64,,))
 
