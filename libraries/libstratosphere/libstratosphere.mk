@@ -5,7 +5,7 @@ THIS_MAKEFILE     := $(abspath $(lastword $(MAKEFILE_LIST)))
 CURRENT_DIRECTORY := $(abspath $(dir $(THIS_MAKEFILE)))
 include $(CURRENT_DIRECTORY)/../config/common.mk
 
-ifeq ($(ATMOSPHERE_BOARD),nx-hac-001)
+ifeq ($(ATMOSPHERE_USE_LIBNX),1)
 
 #---------------------------------------------------------------------------------
 # pull in switch rules
@@ -14,7 +14,7 @@ ifeq ($(strip $(DEVKITPRO)),)
 $(error "Please set DEVKITPRO in your environment. export DEVKITPRO=<path to>/devkitpro")
 endif
 
-include $(DEVKITPRO)/libnx/switch_rules
+include $(LIBNX)/switch_rules
 
 endif
 
@@ -39,8 +39,8 @@ CFLAGS      := $(ATMOSPHERE_CFLAGS) $(SETTINGS) $(DEFINES) $(INCLUDE)
 CXXFLAGS    := $(CFLAGS) $(ATMOSPHERE_CXXFLAGS)
 ASFLAGS     := $(ATMOSPHERE_ASFLAGS) $(SETTINGS) $(DEFINES)
 
-ifeq ($(ATMOSPHERE_BOARD),nx-hac-001)
-LDFLAGS     := -specs=$(DEVKITPRO)/libnx/switch.specs $(SETTINGS) -Wl,-Map,$(notdir $*.map)
+ifeq ($(ATMOSPHERE_USE_LIBNX),1)
+LDFLAGS     := -specs=$(LIBNX)/switch.specs $(SETTINGS) -Wl,-Map,$(notdir $*.map)
 else
 LDFLAGS     := -Wl,-Map,$(notdir $*.map)
 endif
@@ -49,7 +49,7 @@ endif
 SOURCES     += $(call ALL_SOURCE_DIRS,../libvapours/source)
 SOURCES     += $(call UNFILTERED_SOURCE_DIRS,source/os)
 
-ifeq ($(ATMOSPHERE_BOARD),nx-hac-001)
+ifeq ($(ATMOSPHERE_USE_LIBNX),1)
 LIBS        := -lnx
 else
 LIBS        :=
@@ -59,7 +59,7 @@ endif
 # list of directories containing libraries, this must be the top level containing
 # include and lib
 #---------------------------------------------------------------------------------
-ifeq ($(ATMOSPHERE_BOARD),nx-hac-001)
+ifeq ($(ATMOSPHERE_USE_LIBNX),1)
 LIBDIRS	:= $(PORTLIBS) $(LIBNX) $(ATMOSPHERE_LIBDIRS) $(ATMOSPHERE_LIBRARIES_DIR)/libvapours
 else
 LIBDIRS	:= $(ATMOSPHERE_LIBDIRS) $(ATMOSPHERE_LIBRARIES_DIR)/libvapours

@@ -3,7 +3,7 @@
 #---------------------------------------------------------------------------------
 include  $(dir $(abspath $(lastword $(MAKEFILE_LIST))))/../common.mk
 
-ifeq ($(ATMOSPHERE_BOARD),nx-hac-001)
+ifeq ($(ATMOSPHERE_USE_LIBNX),1)
 
 #---------------------------------------------------------------------------------
 # pull in switch rules
@@ -12,7 +12,7 @@ ifeq ($(strip $(DEVKITPRO)),)
 $(error "Please set DEVKITPRO in your environment. export DEVKITPRO=<path to>/devkitpro")
 endif
 
-include $(DEVKITPRO)/libnx/switch_rules
+include $(LIBNX)/switch_rules
 
 endif
 
@@ -31,7 +31,7 @@ export CFLAGS      = $(ATMOSPHERE_CFLAGS) $(SETTINGS) $(DEFINES) $(INCLUDE)
 export CXXFLAGS    = $(CFLAGS) $(ATMOSPHERE_CXXFLAGS)
 export ASFLAGS     = $(ATMOSPHERE_ASFLAGS) $(SETTINGS) $(DEFINES)
 
-ifeq ($(ATMOSPHERE_BOARD),nx-hac-001)
+ifeq ($(ATMOSPHERE_USE_LIBNX),1)
 export CXXREQUIRED := -Wl,--require-defined,__libnx_initheap \
                       -Wl,--require-defined,__libnx_exception_handler \
                       -Wl,--require-defined,__libnx_alloc \
@@ -65,8 +65,8 @@ export CXXWRAPS    :=
 endif
 
 
-ifeq ($(ATMOSPHERE_BOARD),nx-hac-001)
-export LDFLAGS     = -specs=$(ATMOSPHERE_LIBRARIES_DIR)/libstratosphere/stratosphere.specs -specs=$(DEVKITPRO)/libnx/switch.specs $(CXXFLAGS) $(CXXWRAPS) $(CXXREQUIRED) -Wl,-Map,$(notdir $*.map) -Wl,-z,relro,-z,now
+ifeq ($(ATMOSPHERE_USE_LIBNX),1)
+export LDFLAGS     = -specs=$(ATMOSPHERE_LIBRARIES_DIR)/libstratosphere/stratosphere.specs -specs=$(LIBNX)/switch.specs $(CXXFLAGS) $(CXXWRAPS) $(CXXREQUIRED) -Wl,-Map,$(notdir $*.map) -Wl,-z,relro,-z,now
 else ifeq ($(ATMOSPHERE_OS_NAME),macos)
 export LDFLAGS     = $(CXXFLAGS) $(CXXWRAPS) $(CXXREQUIRED) -Wl,-map,$(notdir $@.map)
 else
@@ -77,7 +77,7 @@ ifeq ($(ATMOSPHERE_COMPILER_NAME),clang)
 export LDFLAGS += -fuse-ld=lld
 endif
 
-ifeq ($(ATMOSPHERE_BOARD),nx-hac-001)
+ifeq ($(ATMOSPHERE_USE_LIBNX),1)
 export LIBS	:= -lstratosphere -lnx
 else ifeq ($(ATMOSPHERE_BOARD),generic_windows)
 export LIBS	:= -lstratosphere -lwinmm -lws2_32 -lbcrypt -static -static-libgcc -static-libstdc++
@@ -93,7 +93,7 @@ endif
 # list of directories containing libraries, this must be the top level containing
 # include and lib
 #---------------------------------------------------------------------------------
-ifeq ($(ATMOSPHERE_BOARD),nx-hac-001)
+ifeq ($(ATMOSPHERE_USE_LIBNX),1)
 export LIBDIRS	= $(PORTLIBS) $(LIBNX)
 else
 export LIBDIRS	=

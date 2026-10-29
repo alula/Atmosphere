@@ -86,6 +86,9 @@ endif
 
 export ATMOSPHERE_LIBDIRS :=
 
+export ATMOSPHERE_USE_LIBNX := 1
+export LIBNX ?= $(DEVKITPRO)/libnx
+
 else ifeq ($(ATMOSPHERE_BOARD),ounce-bee-001)
 
 ifeq ($(ATMOSPHERE_CPU),arm-cortex-a78c)
@@ -105,6 +108,9 @@ export ATMOSPHERE_CPU_EXTENSIONS := arm_crypto_extension aarch64_crypto_extensio
 endif
 
 export ATMOSPHERE_LIBDIRS :=
+
+export ATMOSPHERE_USE_LIBNX := 1
+export LIBNX ?= $(DEVKITPRO)/libounce
 
 else ifeq ($(ATMOSPHERE_BOARD),qemu-virt)
 
