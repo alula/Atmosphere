@@ -20,6 +20,7 @@ namespace ams::ncm {
 
     enum class ContentMetaPlatform : u8 {
         Nx = 0x0,
+        Ounce = 0x1,
     };
 
 }
