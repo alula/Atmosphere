@@ -234,8 +234,8 @@ namespace ams::crypto::impl {
         vst1q_u8(static_cast<u8 *>(dst), block);
     }
 
-    /* Specializations when building specifically for cortex-a57 (or for apple M* processors). */
-    #if defined(ATMOSPHERE_CPU_ARM_CORTEX_A57) || defined(ATMOSPHERE_OS_MACOS)
+    /* Specializations when building specifically for cortex-a57/a78c (or for apple M* processors). */
+    #if defined(ATMOSPHERE_CPU_ARM_CORTEX_A57) || defined(ATMOSPHERE_CPU_ARM_CORTEX_A78C) || defined(ATMOSPHERE_OS_MACOS)
 
     namespace {
 

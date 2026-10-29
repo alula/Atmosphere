@@ -18,7 +18,7 @@
 
 namespace ams::hw::arch::arm64 {
 
-#if defined(ATMOSPHERE_CPU_ARM_CORTEX_A57) || defined(ATMOSPHERE_CPU_ARM_CORTEX_A53)
+#if defined(ATMOSPHERE_CPU_ARM_CORTEX_A57) || defined(ATMOSPHERE_CPU_ARM_CORTEX_A53) || defined(ATMOSPHERE_CPU_ARM_CORTEX_A78C)
     constexpr inline size_t InstructionCacheLineSize = 0x40;
     constexpr inline size_t DataCacheLineSize        = 0x40;
     constexpr inline size_t NumPerformanceCounters   = 6;
